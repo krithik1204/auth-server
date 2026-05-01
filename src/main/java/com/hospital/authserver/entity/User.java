@@ -36,6 +36,9 @@ public class User {
 
     @Column(nullable = false)
     private String phoneNumber;
+    
+    @Column(nullable = false)
+    private boolean isActive=true;
 
     @Column(nullable = false, unique = true)
     private String medicalRecordNumber;

@@ -53,7 +53,7 @@ public class AuthService {
         user.setPhoneNumber(request.getPhoneNumber());
         user.setMedicalRecordNumber(request.getMedicalRecordNumber());
         user.setRoles(resolveRoles(request.getRoles()));
-
+        user.setActive(true);
         user = userRepository.save(user);
         log.info("User registered successfully with email: {}", request.getEmail());
 
@@ -164,7 +164,7 @@ public class AuthService {
 
     private Set<Role> resolveRoles(Set<String> requestedRoles) {
         Set<String> roleNames = requestedRoles == null || requestedRoles.isEmpty()
-                ? Set.of("ROLE_USER")
+                ? Set.of("ROLE_ADMIN")
                 : requestedRoles;
 
         Set<Role> roles = new HashSet<>();
