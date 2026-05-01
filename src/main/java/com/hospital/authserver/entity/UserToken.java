@@ -29,7 +29,7 @@ public class UserToken {
     private String refreshToken;
 
     @Column(nullable = false)
-    private LocalDateTime issuedAt;
+    private LocalDateTime loginTime;
 
     @Column(nullable = false)
     private LocalDateTime expiresAt;
@@ -37,8 +37,11 @@ public class UserToken {
     @Column(nullable = false)
     private Boolean revoked = false;
 
+    @Column
+    private LocalDateTime logoutTime;
+
     @PrePersist
     protected void onCreate() {
-        issuedAt = LocalDateTime.now();
+        loginTime = LocalDateTime.now();
     }
 }

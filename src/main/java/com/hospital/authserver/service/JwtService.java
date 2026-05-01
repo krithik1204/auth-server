@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class JwtService {
@@ -36,17 +37,18 @@ public class JwtService {
         }
     }
 
-    public String generateAccessToken(Long userId, String email) {
-        return generateToken(userId, email, ACCESS_TOKEN_EXPIRATION);
+    public String generateAccessToken(Long userId, String email, Set<String> roles) {
+        return generateToken(userId, email, roles, ACCESS_TOKEN_EXPIRATION);
     }
 
-    public String generateRefreshToken(Long userId, String email) {
-        return generateToken(userId, email, REFRESH_TOKEN_EXPIRATION);
+    public String generateRefreshToken(Long userId, String email, Set<String> roles) {
+        return generateToken(userId, email, roles, REFRESH_TOKEN_EXPIRATION);
     }
 
-    private String generateToken(Long userId, String email, long expirationMs) {
+    private String generateToken(Long userId, String email, Set<String> roles, long expirationMs) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("email", email);
+        claims.put("roles", roles);
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expirationMs);

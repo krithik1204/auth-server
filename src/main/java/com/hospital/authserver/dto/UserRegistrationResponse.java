@@ -9,11 +9,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthenticationResponse {
-    private String accessToken;
-    private String refreshToken;
-    private String tokenType;
-    private Long expiresIn;
+public class UserRegistrationResponse {
     private UserDto user;
 
     @Data
