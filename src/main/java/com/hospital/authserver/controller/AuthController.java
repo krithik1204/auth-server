@@ -49,7 +49,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/logout")
+   // @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestHeader(name = "Authorization", required = false) String authorizationHeader) {
        
     	System.out.println("from logout");

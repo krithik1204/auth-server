@@ -83,6 +83,8 @@ public class AuthorizationServerConfig {
                 .requestMatchers(
                         "/api/auth/register",
                         "/api/auth/login",
+                       // "/api/auth/logout",
+                        "/api/auth/logout/**",
                         "/h2-console/**",
                         "/.well-known/**",
                         "/oauth2/**"
