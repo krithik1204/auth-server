@@ -51,7 +51,6 @@ public class AuthService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
-        user.setMedicalRecordNumber(request.getMedicalRecordNumber());
         user.setRoles(resolveRoles(request.getRoles()));
         user.setActive(true);
         user = userRepository.save(user);
@@ -64,7 +63,6 @@ public class AuthService {
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
-        userDto.setMedicalRecordNumber(user.getMedicalRecordNumber());
         userDto.setRoles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()));
 
         response.setUser(userDto);
@@ -119,7 +117,6 @@ public class AuthService {
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
-        userDto.setMedicalRecordNumber(user.getMedicalRecordNumber());
         userDto.setRoles(roleNames);
 
         response.setUser(userDto);

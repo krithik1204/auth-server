@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,8 +41,11 @@ public class User {
     @Column(nullable = false)
     private boolean isActive=true;
 
-    @Column(nullable = false, unique = true)
-    private String medicalRecordNumber;
+    @Column
+    private String gender;
+    @Column
+    private LocalDate dateOfBirth;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
