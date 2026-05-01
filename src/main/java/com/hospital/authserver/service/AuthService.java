@@ -1,25 +1,29 @@
 package com.hospital.authserver.service;
 
-import com.hospital.authserver.dto.AuthenticationResponse;
-import com.hospital.authserver.dto.UserLoginRequest;
-import com.hospital.authserver.dto.UserRegistrationRequest;
-import com.hospital.authserver.dto.UserRegistrationResponse;
-import com.hospital.authserver.entity.Role;
-import com.hospital.authserver.entity.User;
-import com.hospital.authserver.entity.UserToken;
-import com.hospital.authserver.repository.RoleRepository;
-import com.hospital.authserver.repository.UserRepository;
-import com.hospital.authserver.repository.UserTokenRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hospital.authserver.dto.AuthenticationResponse;
+import com.hospital.authserver.dto.UserLoginRequest;
+import com.hospital.authserver.dto.UserRegistrationRequest;
+import com.hospital.authserver.dto.UserRegistrationResponse;
+import com.hospital.authserver.entity.Admin;
+import com.hospital.authserver.entity.Role;
+import com.hospital.authserver.entity.User;
+import com.hospital.authserver.entity.UserToken;
+import com.hospital.authserver.repository.AdminRepository;
+import com.hospital.authserver.repository.RoleRepository;
+import com.hospital.authserver.repository.UserRepository;
+import com.hospital.authserver.repository.UserTokenRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +36,7 @@ public class AuthService {
     private final RoleRepository roleRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final AdminRepository adminRepository;
 
     public UserRegistrationResponse register(UserRegistrationRequest request) {
         // Validate email uniqueness
@@ -39,10 +44,7 @@ public class AuthService {
             throw new IllegalArgumentException("Email already registered");
         }
 
-        // Validate medical record number uniqueness
-        if (userRepository.existsByMedicalRecordNumber(request.getMedicalRecordNumber())) {
-            throw new IllegalArgumentException("Medical record number already exists");
-        }
+       
 
         // Create new user
         User user = new User();
@@ -52,10 +54,20 @@ public class AuthService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setRoles(resolveRoles(request.getRoles()));
+        user.setGender(request.getGender());
+        user.setDateOfBirth(request.getDateOfBirth());
         user.setActive(true);
         user = userRepository.save(user);
         log.info("User registered successfully with email: {}", request.getEmail());
-
+        
+        
+        Admin admin=new Admin();
+        admin.setName(user.getFirstName()+" "+user.getLastName());
+        admin.setUser(user);
+        adminRepository.save(admin);
+        
+        log.info("User registered successfully with Name: {}", admin.getName());
+        
         // Build response without tokens
         UserRegistrationResponse response = new UserRegistrationResponse();
         UserRegistrationResponse.UserDto userDto = new UserRegistrationResponse.UserDto();

@@ -20,7 +20,7 @@ public class UserRegistrationResponse {
         private String email;
         private String firstName;
         private String lastName;
-        private String medicalRecordNumber;
+       
         private Set<String> roles;
     }
 }
