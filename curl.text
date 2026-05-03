@@ -1,0 +1,29 @@
+read me curl
+
+curl --location 'http://localhost:9000/api/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "email": "raju@gmail.com",
+  "password": "123456",
+  "firstName": "Raju",
+  "lastName": "M",
+  "phoneNumber": "9876543210",
+  "dateOfBirth": "1995-08-15"
+}'
+
+curl --location 'http://localhost:9000/api/auth/logout/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "email": "john.doe@gmail.com",
+  "password": "123456"
+}'
+
+curl --location 'http://localhost:8081/api/profile' \
+--header 'Authorization: Bearer eyJraWQiOiJkMjc4MThkMy05N2Q1LTQ3M2YtYjc2YS0yZjEzZjFjYTAyODQiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiZW1haWwiOiJyYWp1QGdtYWlsLmNvbSIsInN1YiI6IjIiLCJpYXQiOjE3Nzc3ODc4NjMsImV4cCI6MTc3Nzc4ODc2MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDAwIn0.VL1pgyXLmVAm-Lhy9LUGNLBC9ZzSzFsjuEraMtOGFJDgdfSa6n4CF2yLeHGEuOTDuT19II3OjGSWTiCE6cSLsdN2agtUv7SpD3BYJG69yTEbqMJfuzPop55tPPcHK5Lqa8whssUYEAU549BYz9nYoc0rStqEWEQ5laoli7uSt08oTzbyd_3zxEPFUFgHmVQieU7uNaKlhWPFrua93Ltt41D373dZ_Qz8EdpOqk-LzcbG3dHqGTTps4jgoeT5XB8IjHA3ybxyqRRhmpma5ZKRtmZXK0ze629TtUZAAzsvbYhga8-UMLFt_cqupfJRqWZTjv6SfRw-QecVCtxSo1gWUg'
+
+curl --location 'http://localhost:9000/api/auth/logout/2' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "email": "john.doe@gmail.com",
+  "password": "123456"
+}'
