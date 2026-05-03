@@ -40,9 +40,7 @@ public class AuthService {
         }
 
         // Validate medical record number uniqueness
-        if (userRepository.existsByMedicalRecordNumber(request.getMedicalRecordNumber())) {
-            throw new IllegalArgumentException("Medical record number already exists");
-        }
+
 
         // Create new user
         User user = new User();
@@ -51,7 +49,6 @@ public class AuthService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
-        user.setMedicalRecordNumber(request.getMedicalRecordNumber());
         user.setRoles(resolveRoles(request.getRoles()));
 
         user = userRepository.save(user);
@@ -64,7 +61,6 @@ public class AuthService {
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
-        userDto.setMedicalRecordNumber(user.getMedicalRecordNumber());
         userDto.setRoles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()));
 
         response.setUser(userDto);
@@ -119,7 +115,6 @@ public class AuthService {
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
-        userDto.setMedicalRecordNumber(user.getMedicalRecordNumber());
         userDto.setRoles(roleNames);
 
         response.setUser(userDto);

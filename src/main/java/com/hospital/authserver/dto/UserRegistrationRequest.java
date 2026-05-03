@@ -15,6 +15,5 @@ public class UserRegistrationRequest {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String medicalRecordNumber;
     private Set<String> roles;
 }
