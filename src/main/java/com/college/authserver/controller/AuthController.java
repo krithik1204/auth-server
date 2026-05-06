@@ -24,6 +24,7 @@ public class AuthController {
     public ResponseEntity<UserRegistrationResponse> register(@RequestBody UserRegistrationRequest request) {
         try {
             log.info("Registration attempt for email: {}", request.getEmail());
+            log.info("Registration attempt for DateOfBirth: {}", request.getDateOfBirth());
             UserRegistrationResponse response = authService.register(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (IllegalArgumentException e) {

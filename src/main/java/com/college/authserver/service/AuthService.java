@@ -47,10 +47,10 @@ public class AuthService {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setRoles(resolveRoles(request.getRoles()));
+        user.setName(request.getName());
+        user.setPhone_number(request.getPhoneNumber());
+        user.setDate_of_birth(request.getDateOfBirth());
+       
 
         user = userRepository.save(user);
         log.info("User registered successfully with email: {}", request.getEmail());
@@ -60,10 +60,9 @@ public class AuthService {
         UserRegistrationResponse.UserDto userDto = new UserRegistrationResponse.UserDto();
         userDto.setId(user.getId());
         userDto.setEmail(user.getEmail());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setRoles(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()));
-
+        userDto.setName(user.getName());
+       
+       
         response.setUser(userDto);
         return response;
     }
@@ -84,9 +83,8 @@ public class AuthService {
     }
 
     private AuthenticationResponse generateTokensForUser(User user) {
-        Set<String> roleNames = user.getRoles().stream()
-                .map(Role::getName)
-                .collect(Collectors.toSet());
+     Set<Role> roles=   user.getRoles();
+Set<String> roleNames=roles.stream().map(x->x.getName()).collect(Collectors.toSet());
 
         // Generate JWT tokens
         String accessToken = jwtService.generateAccessToken(user.getId(), user.getEmail(), roleNames);
@@ -114,8 +112,7 @@ public class AuthService {
         AuthenticationResponse.UserDto userDto = new AuthenticationResponse.UserDto();
         userDto.setId(user.getId());
         userDto.setEmail(user.getEmail());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
+        userDto.setName(user.getName());
         userDto.setRoles(roleNames);
 
         response.setUser(userDto);
@@ -158,17 +155,5 @@ public class AuthService {
         log.info("Access token revoked for user: {}", token.getUser().getId());
     }
 
-    private Set<Role> resolveRoles(Set<String> requestedRoles) {
-        Set<String> roleNames = requestedRoles == null || requestedRoles.isEmpty()
-                ? Set.of("ROLE_USER")
-                : requestedRoles;
 
-        Set<Role> roles = new HashSet<>();
-        for (String roleName : roleNames) {
-            Role role = roleRepository.findByName(roleName)
-                    .orElseGet(() -> roleRepository.save(new Role(null, roleName)));
-            roles.add(role);
-        }
-        return roles;
-    }
 }

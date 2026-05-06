@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -12,8 +13,7 @@ import java.util.Set;
 public class UserRegistrationRequest {
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String phoneNumber;
-    private Set<String> roles;
+    private LocalDate dateOfBirth;
 }
