@@ -1,4 +1,4 @@
-package com.hospital.authserver.config;
+package com.college.authserver.config;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

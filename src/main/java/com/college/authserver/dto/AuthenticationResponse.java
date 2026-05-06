@@ -1,4 +1,4 @@
-package com.hospital.authserver.dto;
+package com.college.authserver.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,11 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegistrationResponse {
+public class AuthenticationResponse {
+    private String accessToken;
+    private String refreshToken;
+    private String tokenType;
+    private Long expiresIn;
     private UserDto user;
 
     @Data

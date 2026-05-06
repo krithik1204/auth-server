@@ -1,8 +1,9 @@
-package com.hospital.authserver.repository;
+package com.college.authserver.repository;
 
-import com.hospital.authserver.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.college.authserver.entity.Role;
 
 import java.util.Optional;
 

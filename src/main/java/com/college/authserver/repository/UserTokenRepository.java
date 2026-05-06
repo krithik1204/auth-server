@@ -1,9 +1,10 @@
-package com.hospital.authserver.repository;
+package com.college.authserver.repository;
 
-import com.hospital.authserver.entity.User;
-import com.hospital.authserver.entity.UserToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.college.authserver.entity.User;
+import com.college.authserver.entity.UserToken;
 
 import java.util.List;
 import java.util.Optional;

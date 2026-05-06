@@ -1,4 +1,4 @@
-package com.hospital.authserver.entity;
+package com.college.authserver.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

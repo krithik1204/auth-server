@@ -1,4 +1,4 @@
-package com.hospital.authserver.entity;
+package com.college.authserver.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.hospital.authserver.entity.Role;
+import com.college.authserver.entity.Role;
 
 @Entity
 @Table(name = "users")

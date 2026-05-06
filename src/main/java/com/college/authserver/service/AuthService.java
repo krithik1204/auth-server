@@ -1,15 +1,16 @@
-package com.hospital.authserver.service;
+package com.college.authserver.service;
 
-import com.hospital.authserver.dto.AuthenticationResponse;
-import com.hospital.authserver.dto.UserLoginRequest;
-import com.hospital.authserver.dto.UserRegistrationRequest;
-import com.hospital.authserver.dto.UserRegistrationResponse;
-import com.hospital.authserver.entity.Role;
-import com.hospital.authserver.entity.User;
-import com.hospital.authserver.entity.UserToken;
-import com.hospital.authserver.repository.RoleRepository;
-import com.hospital.authserver.repository.UserRepository;
-import com.hospital.authserver.repository.UserTokenRepository;
+import com.college.authserver.dto.AuthenticationResponse;
+import com.college.authserver.dto.UserLoginRequest;
+import com.college.authserver.dto.UserRegistrationRequest;
+import com.college.authserver.dto.UserRegistrationResponse;
+import com.college.authserver.entity.Role;
+import com.college.authserver.entity.User;
+import com.college.authserver.entity.UserToken;
+import com.college.authserver.repository.RoleRepository;
+import com.college.authserver.repository.UserRepository;
+import com.college.authserver.repository.UserTokenRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;

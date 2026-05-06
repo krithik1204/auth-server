@@ -1,4 +1,4 @@
-package com.hospital.authserver.dto;
+package com.college.authserver.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

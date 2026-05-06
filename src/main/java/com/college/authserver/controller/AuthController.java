@@ -1,10 +1,11 @@
-package com.hospital.authserver.controller;
+package com.college.authserver.controller;
 
-import com.hospital.authserver.dto.AuthenticationResponse;
-import com.hospital.authserver.dto.UserLoginRequest;
-import com.hospital.authserver.dto.UserRegistrationRequest;
-import com.hospital.authserver.dto.UserRegistrationResponse;
-import com.hospital.authserver.service.AuthService;
+import com.college.authserver.dto.AuthenticationResponse;
+import com.college.authserver.dto.UserLoginRequest;
+import com.college.authserver.dto.UserRegistrationRequest;
+import com.college.authserver.dto.UserRegistrationResponse;
+import com.college.authserver.service.AuthService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

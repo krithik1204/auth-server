@@ -1,4 +1,4 @@
-package com.hospital.authserver.service;
+package com.college.authserver.service;
 
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.jwk.RSAKey;
